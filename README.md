@@ -9,17 +9,16 @@ Shopify's Script Editor allow you to write scripts in Ruby that can modify the p
 CAMPAIGNS = [
   # Give the product "A" a 10% discount with the
   # discount message: "10% off A"
-  # ItemCampaign.new(
-  #   TagSelector.new("sale"),
-  #   MoneyDiscount.new(5_00, "5$ off all items on sale",),
-  # ),
+  ItemCampaign.new(
+   TagSelector.new("sale"),
+   MoneyDiscount.new(5_00, "5$ off all items on sale",),
+  ),
 
-  # Give the product "Bar Chart" a $5 discount with the
-  # discount message: "$5 off Bar Chart"
-  # ItemCampaign.new(
-  #   PriceSelector.new(:lower_than, Money.new(cents: 100_00)),
-  #   PercentageDiscount.new(10, "10% off all items under 100$"),
-  # ),
+  # Give 10% off all items 
+  ItemCampaign.new(
+    PriceSelector.new(:lower_than, Money.new(cents: 100_00)),
+    PercentageDiscount.new(10, "10% off all items under 100$"),
+  ),
 
   BogoCampaign.new(
     TagSelector.new("letter"),
@@ -47,10 +46,29 @@ This repository aims to build small, reusable components that can be assembled t
 
 Campaigns are Ruby classes that orchestrate discounting. They are responsible for tracking the eligibility of a discount, selecting items and applying discounts.
 
+* **`ItemCampaign`**: Discount all the products in the "on sale" collection.
+* **`BogoCampaign`** eg: Purchase 2 items in the "on sale" collection, get the 3rd one for free.
+
 ### Discounts
 
-Discounts are Ruby classes that manipulate the prices of line items. They respond to `apply`.
+Discounts are responsible for modifying the prices of line items. 
 
 ### Selectors
 
-Selectors are Ruby classes that find line items eligible for discounting.
+Selectors are responsible for finding items that are eligible for discounting. 
+
+### Partitioners
+
+The partitioners are responsible for dividing line items into non-discounted and discounted items. They are used for `BogoCampaign`. Taking for example the following campaign:
+
+```ruby
+BogoCampaign.new(
+  TagSelector.new("sale"),
+  PercentageDiscount.new(100, "Third item is free"),
+  LowToHighPartitioner.new(2,1),
+)
+```
+
+1) The `TagSelector` will find all items that hate the `sale` tag.
+2) The `LowToHighPartitioner` will sort all items with prices ascending (low to high), and will then return every 3rd item (skipping 2, taking 1).
+3) The `PercentageDiscount` will then apply 100% discount on all items returned by the partitioner.
