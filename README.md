@@ -7,19 +7,19 @@ Shopify's Script Editor allow you to write scripts in Ruby that can modify the p
 ```ruby
 # Use an array to keep track of the discount campaigns desired.
 CAMPAIGNS = [
-  # Give the product "A" a 10% discount with the
-  # discount message: "10% off A"
+  # 5$ off all the items with the "sale" tag
   ItemCampaign.new(
    TagSelector.new("sale"),
    MoneyDiscount.new(5_00, "5$ off all items on sale",),
   ),
 
-  # Give 10% off all items 
+  # 10% off all items with a price lower than 100$
   ItemCampaign.new(
     PriceSelector.new(:lower_than, Money.new(cents: 100_00)),
     PercentageDiscount.new(10, "10% off all items under 100$"),
   ),
 
+  # Give every 3rd item with the tag "letter" for free
   BogoCampaign.new(
     TagSelector.new("letter"),
     PercentageDiscount.new(100, "Third item is free"),
@@ -46,8 +46,8 @@ This repository aims to build small, reusable components that can be assembled t
 
 Campaigns are Ruby classes that orchestrate discounting. They are responsible for tracking the eligibility of a discount, selecting items and applying discounts.
 
-* **`ItemCampaign`**: Discount all the products in the "on sale" collection.
-* **`BogoCampaign`** eg: Purchase 2 items in the "on sale" collection, get the 3rd one for free.
+* **`ItemCampaign`**: Discount all the products with the "on sale" tag.
+* **`BogoCampaign`** eg: Purchase 2 items with the "on sale" tag, get the 3rd one for free.
 
 ### Discounts
 
