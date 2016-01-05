@@ -31,6 +31,20 @@ class BogoCampaign
     @partitioner = partitioner
   end
 
+  # Runs the campaign on the given cart
+  #
+  # Arguments
+  # ---------
+  #
+  # * cart
+  #   The cart on which the campaign is applied
+  #
+  # Example
+  # -------
+  # To run the campaign on the input cart
+  #
+  #    campaign.run(Input.cart)
+  #
   def run(cart)
     applicable_items = cart.line_items.select do |line_item|
       @selector.match?(line_item)

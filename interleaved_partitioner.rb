@@ -21,7 +21,7 @@
 #
 # The items to be discounted will be (before discount):
 #
-#   * (A) Quantity = 1, Price = 10
+#   * (B) Quantity = 1, Price = 10
 #
 class InterleavedPartitioner
 
@@ -56,7 +56,7 @@ class InterleavedPartitioner
   #   The cart on wich split items will be added (typically Input.cart)
   #
   # * line_items
-  #   The selected items that are applicable for the campaign.
+  #   The selected items that are applicable for the campaign
   #
   # Example
   # -------
