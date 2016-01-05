@@ -24,10 +24,17 @@
 #   * (A) Quantity = 1, Price = 10
 #
 class InterleavedPartitioner
+
   # Initializes the partitioner
   #
-  # * paid_item_count: The number of items to skip before selecting items to discount.
-  # * discounted_item_count: The number of items to return for discounting.
+  # Arguments
+  # ---------
+  #
+  # * paid_item_count
+  #   The number of items to skip before selecting items to discount.
+  #
+  # * discounted_item_count
+  #   The number of items to return for discounting.
   #
   # Example
   # -------
@@ -42,8 +49,14 @@ class InterleavedPartitioner
 
   # Partitions the items, and returns the items that are to be discounted
   #
-  # * cart: The cart on wich split items will be added (typically Input.cart)
-  # * line_items: The selected items that are applicable for the campaign.
+  # Arguments
+  # ---------
+  #
+  # * cart
+  #   The cart on wich split items will be added (typically Input.cart)
+  #
+  # * line_items
+  #   The selected items that are applicable for the campaign.
   #
   # Example
   # -------

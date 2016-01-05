@@ -7,17 +7,24 @@
 #   * Buy one, the 2nd item is 50% off
 #   * Buy two, the 3rd item is 5$ off
 #
-# - Selector
-#   The selector is used to find eligible items for this campaign.
-#
-# - Discount
-#   The discount will change the price of the items returned by the partitioner
-#
-# - Partitioner
-#   The partitioner takes all applicable items, and returns only those that
-#   are to be discounted. In a "Buy two, the 3rd item is free" campaign,
-#   the partitioner would skip 2 items and return the 3rd item.
 class BogoCampaign
+
+  # Initializes the campaign
+  #
+  # Arguments
+  # ---------
+  #
+  # * selector
+  #   The selector is used to find eligible items for this campaign.
+  #
+  # * discount
+  #   The discount will change the price of the items returned by the partitioner
+  #
+  # * partitioner
+  #   The partitioner takes all applicable items, and returns only those that
+  #   are to be discounted. In a "Buy two, the 3rd item is free" campaign,
+  #   the partitioner would skip 2 items and return the 3rd item.
+  #
   def initialize(selector, discount, partitioner)
     @selector = selector
     @discount = discount
