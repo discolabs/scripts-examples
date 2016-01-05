@@ -19,6 +19,7 @@ class MoneyDiscount
   #
   # * message
   #   The message to show for the discount
+  #
   def initialize(cents, message)
     @amount = Money.new(cents: cents)
     @message = message
