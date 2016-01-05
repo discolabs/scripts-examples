@@ -1,16 +1,50 @@
-# A class that knows how to calculate the discount for a line item, given a
-# number of cents to discount each unit of item by.
+# MoneyDiscount
+# =============
+#
+# The `MoneyDiscount` is used to give flat amount discounts
+#
+# Example
+# -------
+#   * 5$ off
+#
 class MoneyDiscount
+
+  # Initializes the discount
+  #
+  # Arguments
+  # ---------
+  #
+  # * cents
+  #   The amount of cents of the discount
+  #
+  # * message
+  #   The message to show for the discount
   def initialize(cents, message)
     @amount = Money.new(cents: cents)
     @message = message
   end
 
+  # Applies the discount on a line item
+  #
+  # Arguments
+  # ---------
+  #
+  # * line_item
+  #   The item on which the discount will be applied
+  #
+  # Example
+  # -------
+  # Given `MoneyDiscount.new(5_00, "Great discount") and the following line item:
+  #
+  #   * Quantity = 2, Price = 10
+  #
+  # The discount will give 5$ off per quantity, for a total of 10$ off.
+  #
   def apply(line_item)
-    # Using the Discount instance, calculate the discount for this line item.
+    # Calculate the total discount for this line item
     line_discount = @amount * line_item.quantity
 
-    # Calculated the discounted line price using the line discount.
+    # Calculated the discounted line price
     new_line_price = line_item.line_price - line_discount
 
     # Apply the new line price to this line item with a given message
