@@ -1,5 +1,7 @@
 # Shopify Scripts - Examples
 
+**Shopify Scripts is a feature only available to select Shopify merchants
+
 Shopify's Script Editor allow you to write scripts in Ruby that can modify the prices and properties of line items in your store's cart. Using scripts, you can create discounts that will be applied automatically based on the items and properties of a cart. This repository provides examples of scripts that can be used.
 
 ## Usage
