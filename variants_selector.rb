@@ -16,7 +16,7 @@ class VariantsSelector
   #
   #  * variant_ids
   #    An array containing the accepted variant ids
-  def intialize(variant_ids)
+  def initialize(variant_ids)
     @variant_ids = Array(variant_ids)
   end
 
