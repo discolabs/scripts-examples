@@ -1,43 +1,43 @@
 # PriceSelector
-# ============
+# =============
 #
-# The `PriceSelector` is used to select items by their price
+# The `PriceSelector` selects items by price.
 #
 # Example
 # -------
-#   * Items with a price lower than 5$
-#   * Items with a price higher than 10$
+#   * Items with a price lower than $5
+#   * Items with a price higher than $10
 #
 class PriceSelector
 
-  # Initializes the selector
+  # Initializes the selector.
   #
   # Arguments
   # ---------
   #
   # * condition
-  #   The condition to use when conparing the prices
-  #   Available options are `:greater_than` and `:lower_than`
+  #   The condition to use when conparing the prices.
+  #   Available options are `:greater_than` and `:lower_than`.
   #
   # * price
-  #   The price to use for comparison
+  #   The price to use for comparison.
   def initialize(condition, price)
     @price = price
     @condition = condition
   end
 
-  # Returns whether a line item matches this selector or not
+  # Returns whether a line item matches this selector or not.
   #
   # Arguments
   # ---------
   #
   # * line_item
-  #   The item to check for matching
+  #   The item to check for matching.
   #
   # Example
   # -------
-  # Given `PriceSelector.new(:greater_than, Money.new(cents: 5_00)) and
-  # a line_item with a price of 10$
+  # Given `PriceSelector.new(:greater_than, Money.new(cents: 5_00))` and
+  # a line_item with a price of 10$:
   #
   #    selector.match?(line_item) # returns true
   #

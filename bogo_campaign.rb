@@ -1,29 +1,30 @@
 # BogoCampaign
 # ============
 #
-# Examples campaigns
-# ------------------
-#   * Buy one, the 2nd item is free
-#   * Buy one, the 2nd item is 50% off
-#   * Buy two, the 3rd item is 5$ off
+# Example campaigns
+# -----------------
+#
+#   * Buy one, get one free
+#   * Buy one, get one 50% off
+#   * Buy two items and get a third for $5 off
 #
 class BogoCampaign
 
-  # Initializes the campaign
+  # Initializes the campaign.
   #
   # Arguments
   # ---------
   #
   # * selector
-  #   The selector is used to find eligible items for this campaign.
+  #   The selector finds eligible items for this campaign.
   #
   # * discount
-  #   The discount will change the price of the items returned by the partitioner
+  #   The discount changes the prices of the items returned by the partitioner.
   #
   # * partitioner
   #   The partitioner takes all applicable items, and returns only those that
-  #   are to be discounted. In a "Buy two, the 3rd item is free" campaign,
-  #   the partitioner would skip 2 items and return the 3rd item.
+  #   are to be discounted. In a "Buy two items, get the third for free"
+  #   campaign, the partitioner would skip two items and return the third item.
   #
   def initialize(selector, discount, partitioner)
     @selector = selector
@@ -31,17 +32,17 @@ class BogoCampaign
     @partitioner = partitioner
   end
 
-  # Runs the campaign on the given cart
+  # Runs the campaign on the given cart.
   #
   # Arguments
   # ---------
   #
   # * cart
-  #   The cart on which the campaign is applied
+  #   The cart to which the campaign is applied.
   #
   # Example
   # -------
-  # To run the campaign on the input cart
+  # To run the campaign on the input cart:
   #
   #    campaign.run(Input.cart)
   #
