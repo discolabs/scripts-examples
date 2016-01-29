@@ -2,8 +2,8 @@
 # ======================
 #
 # The `InterleavedPartitioner` is used by campaigns for which not all items
-# are discounted, such as `BogoCampaign`. It aims to discount items such that
-# the customer percieves it as being the best deal for them.
+# are discounted, such as `BogoCampaign`. It tries to discount items so that
+# the customer sees it as being the best deal for them.
 #
 # Example
 # -------
@@ -15,7 +15,7 @@
 #
 # The partitioner will:
 #
-#   * Sort them by price descending (B, A)
+#   * Sort them by descending price (B, A)
 #   * Skip 2 of B, then take one of B
 #   * Skip 2 of A, and nothing is left to be discounted for A
 #
@@ -25,7 +25,7 @@
 #
 class InterleavedPartitioner
 
-  # Initializes the partitioner
+  # Initializes the partitioner.
   #
   # Arguments
   # ---------
@@ -38,7 +38,7 @@ class InterleavedPartitioner
   #
   # Example
   # -------
-  # To create a campain such as "Buy two, the 3rd item is dicounted"
+  # To create a campaign such as "Buy two, the 3rd item is discounted":
   #
   #    InterleavedPartitioner.new(2,1)
   #
@@ -47,33 +47,33 @@ class InterleavedPartitioner
     @discounted_item_count = discounted_item_count
   end
 
-  # Partitions the items, and returns the items that are to be discounted
+  # Partitions the items and returns the items that are to be discounted.
   #
   # Arguments
   # ---------
   #
   # * cart
-  #   The cart on wich split items will be added (typically Input.cart)
+  #   The cart to which split items will be added (typically Input.cart).
   #
   # * line_items
-  #   The selected items that are applicable for the campaign
+  #   The selected items that are applicable for the campaign.
   #
   # Example
   # -------
-  # To create a campaign such that for all items under 5$, the 3rd one is discounted
+  # To create a campaign such that for all items under $5, the 3rd one is discounted:
   #
   #    selected_items = Input.cart.line_items.select{|item| item.variant.price < Money.new(cents: 5_00)}
   #    partitioner = InterleavedPartitioner.new(2,1)
   #    items_to_discount = partitioner.partition(Input.cart, selected_items)
   #
-  # After this, the campain has to apply discounts to `items_to_discount`
+  # After this, the campaign has to apply discounts to `items_to_discount`.
   #
   def partition(cart, line_items)
     # Sort the items by price from high to low
     sorted_items = line_items.sort_by{|line_item| line_item.variant.price}.reverse
     # Create an array of items to return
     discounted_items = []
-    # Keep counters of items seen and discount, to avoid having to recalculate on each iteration
+    # Keep counters of items seen and discounted, to avoid having to recalculate on each iteration
     total_items_seen = 0
     discounted_items_seen = 0
 

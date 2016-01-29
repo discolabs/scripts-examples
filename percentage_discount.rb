@@ -1,7 +1,7 @@
 # PercentageDiscount
-# =============
+# ==================
 #
-# The `PercentageDiscount` is used to give discounts as percentage of the item price
+# The `PercentageDiscount` gives percentage discounts to item prices.
 #
 # Example
 # -------
@@ -9,16 +9,16 @@
 #
 class PercentageDiscount
 
-  # Initializes the discount
+  # Initializes the discount.
   #
   # Arguments
   # ---------
   #
   # * percent
-  #   The percentage by which the item will be discounted
+  #   The percentage by which the item will be discounted.
   #
   # * message
-  #   The message to show for the discount
+  #   The message to show for the discount.
   #
   def initialize(percent, message)
     # Calculate the percentage, while ensuring that Decimal values are used in
@@ -27,21 +27,21 @@ class PercentageDiscount
     @message = message
   end
 
-  # Applies the discount on a line item
+  # Applies the discount on a line item.
   #
   # Arguments
   # ---------
   #
   # * line_item
-  #   The item on which the discount will be applied
+  #   The item on which the discount will be applied.
   #
   # Example
   # -------
-  # Given `PercentageDiscount.new(10, "Great discount") and the following line item:
+  # Given `PercentageDiscount.new(10, "Great discount")` and the following line item:
   #
   #   * Quantity = 2, Price = 10
   #
-  # The discount will give 1$ off per quantity, for a total of 2$ off.
+  # The discount will give $1 off per quantity, for a total of $2 off.
   #
   def apply(line_item)
     # Calculate the discount for this line item
@@ -55,7 +55,7 @@ class PercentageDiscount
     # confirmation emails to describe the applied discount.
     line_item.change_line_price(new_line_price, message: @message)
 
-    # Print a debugging line to the console.
+    # Print a debugging line to the console
     puts "Discounted line item with variant #{line_item.variant.id} by #{line_discount}."
   end
 end

@@ -9,32 +9,31 @@
 #
 class ItemCampaign
 
-  # Initializes the campaign
+  # Initializes the campaign.
   #
   # Arguments
   # ---------
   # * selector
-  #   The selector is used to find eligible items for this campaign.
+  #   The selector finds eligible items for the campaign.
   #
   # * discount
-  #   The discount will change the price of the items returned by the partitioner
+  #   The discount changes the price of the items returned by the partitioner.
   #
   def initialize(selector, discount)
     @selector = selector
     @discount = discount
   end
 
-  # Runs the campaign on the given cart
+  # Runs the campaign on the given cart.
   #
   # Arguments
   # ---------
-  #
   # * cart
-  #   The cart on which the campaign is applied
+  #   The cart to which the campaign is applied.
   #
   # Example
   # -------
-  # To run the campaign on the input cart
+  # To run the campaign on the input cart:
   #
   #    campaign.run(Input.cart)
   #

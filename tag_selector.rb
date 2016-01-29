@@ -1,7 +1,7 @@
 # TagSelector
 # ============
 #
-# The `TagSelector` is used to select items by tag
+# The `TagSelector` selects items by tag.
 #
 # Example
 # -------
@@ -9,28 +9,28 @@
 #
 class TagSelector
 
-  # Initializes the selector
+  # Initializes the selector.
   #
   # Arguments
   # ---------
   #
   #  * tag
-  #    The tag that the selector will look for in the item
+  #    The tag that the selector will look for in the item.
   def initialize(tag)
     @tag = tag
   end
 
-  # Returns whether a line item matches this selector or not
+  # Returns whether a line item matches this selector or not.
   #
   # Arguments
   # ---------
   #
   # * line_item
-  #   The item to check for matching
+  #   The item to check for matching.
   #
   # Example
   # -------
-  # Given `TagSelector.new("sale") and
+  # Given `TagSelector.new("sale")` and
   # a line_item with a variant with tags = ["sale", "boat", "hat"]
   #
   #    selector.match?(line_item) # returns true
